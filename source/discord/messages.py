@@ -35,3 +35,8 @@ Rules5 = discord.Embed(
     description="You must follow Discord’s Terms of Service and Community Guidelines. Any actions that violate Discord’s rules are not allowed here.",
     color=2105893
 )
+
+Live_alert = discord.Embed(
+    title="Live Alert 📢",
+    color=2105893
+)
