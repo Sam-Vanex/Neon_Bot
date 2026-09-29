@@ -8,7 +8,7 @@ Rules0 = discord.Embed(
 
 Rules1 = discord.Embed(
     title="` Rule 1 ` Be Respectful",
-    description="Treat everyone with respect. Bullying, harassment, or targeted hate is not allowed. Light trash talk is tolerated as long as it stays friendly and doesn’t cross into disrespect or make others uncomfortable.",
+    description="Treat everyone with respect. Bullying, harassment, or targeted hate is not allowed. Light trash talk is tolerated as long as it stays friendly and doesn’t cross into disrespect or makes others uncomfortable.",
     color=2105893
 )
 
