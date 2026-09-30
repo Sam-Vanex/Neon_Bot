@@ -27,30 +27,38 @@ async def Rules(interaction: discord.Interaction):
     Args:
         interaction: The Discord interaction generated when a user executes the /rules slash command.
     """
-    await interaction.response.defer()
-    await interaction.followup.send(embeds=[
+    await interaction.response.send_message(embeds=[
         messages.Rules0,
         messages.Rules1,
         messages.Rules2,
         messages.Rules3,
         messages.Rules4,
-        messages.Rules5
-    ])
+        messages.Rules5])
+
+@bot.tree.command(name="stream_notification", description="Sends a notification that the livestream has started", guild=discord.Object(id=1496509654270873681)) ### GUILD REMOVE AFTER TEST
+async def Stream_notification(interaction: discord.Interaction):
+    """Send the livestream notification embed and notify everyone.
+    
+    Args:
+        interaction: The Discord interaction generated when a user executes the /rules slash command.
+    """
+
+    await interaction.response.send_message(content="@everyone", embed=Stream_notification)
 
 async def setup_roles(guild: discord.Guild):
-    """Create required server roles if they do not already exist."""
-
+    """Create required server roles if they do not already exist.
     
+    Args:
+        guild: The guild where you want the roles set up.
+    """
 
-    for role_name in ROLE_NAMES:
-        role = discord.utils.get(guild.roles, name=role_name)
+    #Twitch sub role.
+    if discord.utils.get(guild.roles, name="Twitch_Subscriber") is None:
+        await guild.create_role(name="Twitch_Subscriber", color=discord.Colour.from_str("#9146FF"), permissions=discord.Permissions.none())
 
-        if role is None:
-            await guild.create_role(
-                name=role_name,
-                reason="Required bot role"
-            )
-            print(f"Created role: {role_name}")
+    #Youtube member role.
+    if discord.utils.get(guild.roles, name="Youtube_Member") is None:
+        await guild.create_role(name="Youtube_Member", color=discord.Colour.from_str("#FF0000"), permissions=discord.Permissions.none())
 
 
 @bot.event
@@ -59,7 +67,13 @@ async def on_ready():
     """
     
     # Synchronize the bot's application commands with Discord.
-    await bot.tree.sync()
+    synced = await bot.tree.sync(guild=discord.Object(id=1496509654270873681)) ### REMOVE GUILD AFTER TESTING
+
+    for command in synced:
+        print(f"- /{command.name}")
+
+    # Check if all the roles exist.
+    await setup_roles(bot.guilds[0])
 
     print(f"Logged in as {bot.user}")
 

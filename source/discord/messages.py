@@ -36,7 +36,20 @@ Rules5 = discord.Embed(
     color=2105893
 )
 
-Live_alert = discord.Embed(
-    title="Live Alert 📢",
-    color=2105893
+StreamNotification = discord.Embed(
+    title="🔴 Ne0nflyers is LIVE!",
+    description="Come hang out and watch the stream!",
+    color=3066993
+)
+
+StreamNotification.add_field(
+    name="🟣 Twitch",
+    value="[Watch on Twitch](https://www.twitch.tv/ne0nflyers)",
+    inline=False
+)
+
+StreamNotification.add_field(
+    name="🔴 YouTube",
+    value="[Watch on YouTube](https://www.youtube.com/@NE0NFLYERS)",
+    inline=False
 )
